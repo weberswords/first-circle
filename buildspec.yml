@@ -1,0 +1,21 @@
+version: 0.2
+
+batch:
+  fast-fail: true
+        
+phases:
+  install:
+    on-failure: ABORT
+    commands:
+      - curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+      - sudo apt-add-repository "deb [arch=$(dpkg --print-architecture)] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+      - sudo apt install terraform
+  build:
+    on-failure: ABORT
+    commands:
+      - terraform init
+      - terraform plan
+  deploy:
+    on-failure: ABORT
+    commands:
+      - terraform apply && yes
