@@ -15,7 +15,7 @@ phases:
     commands:
       - terraform init
       - terraform plan
-  deploy:
+  post-build:
     on-failure: ABORT
     commands:
       - terraform apply && yes
