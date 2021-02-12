@@ -1,12 +1,12 @@
-resource "aws_vpc" "main" {
+resource "aws_vpc" "first_circle" {
   cidr_block = var.cidr_blocks.vpc.range
   tags = {
     Name = "main"
   }
 }
 
-resource "aws_subnet" "main" {
-  vpc_id     = aws_vpc.main.id
+resource "aws_subnet" "first_circle" {
+  vpc_id     = aws_vpc.first_circle.id
   cidr_block = var.cidr_blocks.subnet.range
 
   tags = {
